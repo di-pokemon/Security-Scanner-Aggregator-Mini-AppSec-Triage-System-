@@ -24,12 +24,15 @@ def normalize_pip_audit(data: Dict[str, Any]) -> List[Issue]:
 
     for dep in dependencies:
         for vuln in dep.get("vulns", []):
+            package_name = dep.get("name", "unknown-package")
             issues.append(
                 {
                     "tool": "pip-audit",
-                    "package": dep.get("name"),
+                    "package": package_name,
                     "severity": "HIGH",
-                    "message": vuln.get("id") or vuln.get("description") or "dependency vulnerability",
+                    "message": vuln.get("id")
+                    or vuln.get("description")
+                    or f"dependency vulnerability in {package_name}",
                 }
             )
     return issues
