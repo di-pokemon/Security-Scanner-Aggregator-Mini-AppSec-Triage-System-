@@ -14,7 +14,7 @@ def run_semgrep() -> Dict[str, Any]:
     except FileNotFoundError:
         return {"error": "semgrep not installed"}
 
-    if result.returncode not in (0, 1) and not result.stdout:
+    if result.returncode not in (0, 1):
         return {"error": "semgrep failed", "details": result.stderr.strip()}
 
     try:

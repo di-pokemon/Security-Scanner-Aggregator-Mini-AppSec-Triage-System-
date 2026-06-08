@@ -1,7 +1,7 @@
-from typing import Dict, Iterable, Mapping
+from typing import Any, Dict, Iterable, Mapping
 
 
-def calculate_severity(issues: Iterable[Mapping[str, str]]) -> Dict[str, int]:
+def calculate_severity(issues: Iterable[Mapping[str, Any]]) -> Dict[str, int]:
     summary = {
         "CRITICAL": 0,
         "HIGH": 0,

@@ -1,10 +1,10 @@
-from typing import Iterable, List, Mapping
+from typing import Any, Iterable, List, Mapping
 
 MESSAGE_FALSE_POSITIVE_HINTS = ("test file", "example")
 PATH_FALSE_POSITIVE_HINTS = ("example",)
 
 
-def filter_false_positives(issues: Iterable[Mapping[str, str]]) -> List[Mapping[str, str]]:
+def filter_false_positives(issues: Iterable[Mapping[str, Any]]) -> List[Mapping[str, Any]]:
     filtered = []
 
     for issue in issues:

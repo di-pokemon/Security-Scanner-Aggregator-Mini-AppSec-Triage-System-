@@ -38,11 +38,11 @@ class EngineTests(unittest.TestCase):
         issues.extend(normalize_pip_audit(pip_data))
         issues.extend(normalize_semgrep(semgrep_data))
 
-        self.assertEqual(3, len(issues))
+        self.assertEqual(len(issues), 3)
         summary = calculate_severity(issues)
-        self.assertEqual(0, summary["CRITICAL"])
-        self.assertEqual(2, summary["HIGH"])
-        self.assertEqual(1, summary["MEDIUM"])
+        self.assertEqual(summary["CRITICAL"], 0)
+        self.assertEqual(summary["HIGH"], 2)
+        self.assertEqual(summary["MEDIUM"], 1)
 
     def test_false_positive_filter(self):
         issues = [
@@ -51,8 +51,8 @@ class EngineTests(unittest.TestCase):
             {"message": "Real issue", "severity": "HIGH", "file": "src/main.py"},
         ]
         filtered = filter_false_positives(issues)
-        self.assertEqual(1, len(filtered))
-        self.assertEqual("Real issue", filtered[0]["message"])
+        self.assertEqual(len(filtered), 1)
+        self.assertEqual(filtered[0]["message"], "Real issue")
 
 
 if __name__ == "__main__":
