@@ -1,0 +1,11 @@
+{
+    "summary": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+    },
+    "total_vulnerabilities": 0,
+    "false_positives_filtered": 0,
+    "issues": []
+}

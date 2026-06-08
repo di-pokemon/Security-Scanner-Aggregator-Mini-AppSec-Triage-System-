@@ -1,0 +1,4 @@
+flask
+bandit
+pip-audit
+semgrep
