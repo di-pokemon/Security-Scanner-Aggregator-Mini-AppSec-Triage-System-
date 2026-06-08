@@ -17,8 +17,11 @@ def run_pip_audit() -> Dict[str, Any]:
     if result.returncode != 0 and not result.stdout:
         return {"error": "pip-audit failed", "details": result.stderr.strip()}
 
+    if not result.stdout.strip():
+        return {"dependencies": []}
+
     try:
-        parsed = json.loads(result.stdout or "[]")
+        parsed = json.loads(result.stdout)
     except json.JSONDecodeError:
         return {"error": "pip-audit output could not be parsed as JSON"}
 

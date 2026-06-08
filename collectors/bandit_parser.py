@@ -17,7 +17,10 @@ def run_bandit() -> Dict[str, Any]:
     if result.returncode != 0 and not result.stdout:
         return {"error": "bandit failed", "details": result.stderr.strip()}
 
+    if not result.stdout.strip():
+        return {"results": []}
+
     try:
-        return json.loads(result.stdout or "{}")
+        return json.loads(result.stdout)
     except json.JSONDecodeError:
         return {"error": "bandit output could not be parsed as JSON"}

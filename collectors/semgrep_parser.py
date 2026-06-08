@@ -17,7 +17,10 @@ def run_semgrep() -> Dict[str, Any]:
     if result.returncode not in (0, 1):
         return {"error": "semgrep failed", "details": result.stderr.strip()}
 
+    if not result.stdout.strip():
+        return {"results": []}
+
     try:
-        return json.loads(result.stdout or "{}")
+        return json.loads(result.stdout)
     except json.JSONDecodeError:
         return {"error": "semgrep output could not be parsed as JSON"}

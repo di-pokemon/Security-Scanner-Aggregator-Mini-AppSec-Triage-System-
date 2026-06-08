@@ -1,7 +1,6 @@
 from typing import Any, Iterable, List, Mapping
 
 MESSAGE_FALSE_POSITIVE_HINTS = ("test file", "example")
-PATH_FALSE_POSITIVE_HINTS = ("example",)
 
 
 def filter_false_positives(issues: Iterable[Mapping[str, Any]]) -> List[Mapping[str, Any]]:
@@ -13,7 +12,8 @@ def filter_false_positives(issues: Iterable[Mapping[str, Any]]) -> List[Mapping[
 
         if any(hint in message for hint in MESSAGE_FALSE_POSITIVE_HINTS):
             continue
-        if any(hint in file_path for hint in PATH_FALSE_POSITIVE_HINTS):
+        path_parts = [part for part in file_path.replace("\\", "/").split("/") if part]
+        if "examples" in path_parts or "example" in path_parts:
             continue
 
         filtered.append(issue)
