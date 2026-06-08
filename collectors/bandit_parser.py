@@ -20,4 +20,4 @@ def run_bandit() -> Dict[str, Any]:
     try:
         return json.loads(result.stdout or "{}")
     except json.JSONDecodeError:
-        return {"error": "bandit failed"}
+        return {"error": "bandit output could not be parsed as JSON"}
