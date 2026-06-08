@@ -35,7 +35,10 @@ def run_pipeline() -> Dict[str, Any]:
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text(json.dumps(report, indent=4), encoding="utf-8")
 
-    print("Report generated:", report)
+    print(
+        "Report generated:",
+        {"summary": summary, "total_vulnerabilities": report["total_vulnerabilities"]},
+    )
     return report
 
 

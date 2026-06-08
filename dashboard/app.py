@@ -10,8 +10,13 @@ REPORT_PATH = Path(__file__).resolve().parents[1] / "reports" / "unified_report.
 
 @app.route("/report")
 def report():
-    with REPORT_PATH.open(encoding="utf-8") as report_file:
-        return jsonify(json.load(report_file))
+    try:
+        with REPORT_PATH.open(encoding="utf-8") as report_file:
+            return jsonify(json.load(report_file))
+    except FileNotFoundError:
+        return jsonify({"error": "report not found"}), 404
+    except json.JSONDecodeError:
+        return jsonify({"error": "report is invalid"}), 500
 
 
 if __name__ == "__main__":
