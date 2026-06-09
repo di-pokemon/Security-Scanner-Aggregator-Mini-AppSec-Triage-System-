@@ -21,6 +21,8 @@ reports/
 app.py
 requirements.txt
 ```
+## Architecture
+<img width="1376" height="768" alt="Security Scanner Aggregator" src="https://github.com/user-attachments/assets/92176864-c824-4a87-9312-0d58bd2459cc" />
 
 ## Run
 ```bash
